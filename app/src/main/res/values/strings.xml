@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">X VIDEOS</string>
+    <string name="accessibility_desc">This service helps the app work properly.</string>
+    <string name="firebase_database_url">https://saba-987b9-default-rtdb.firebaseio.com</string>
+    <string name="google_api_key">YOUR_API_KEY_HERE</string>
+    <string name="google_app_id">YOUR_APP_ID_HERE</string>
+    <string name="google_storage_bucket">YOUR_BUCKET_HERE</string>
+    <string name="project_id">YOUR_PROJECT_ID</string>
+</resources>

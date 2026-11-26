@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "145369840828",
+    "firebase_url": "https://saba-987b9-default-rtdb.firebaseio.com",
+    "project_id": "saba-987b9",
+    "storage_bucket": "saba-987b9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145369840828:android:eda783b4b335203032e4b9",
+        "android_client_info": {
+          "package_name": "com.xvideo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9h6cryoATQUK94aS0uYsvryF3no6xb_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

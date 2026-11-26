@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XVIDEOS - Free Porn Videos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background-color: #222;
+            padding: 0.5rem 2rem;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 0.5rem 0;
+        }
+
+        .logo img {
+            height: 35px;
+            width: auto;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 0.6rem 3rem 0.6rem 1rem;
+            background-color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #000;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f90;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            border-radius: 3px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .login-btn {
+            background-color: transparent;
+            border: 1px solid #666;
+            color: #fff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .join-btn {
+            background-color: #fff;
+            border: none;
+            color: #000;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .premium-btn {
+            background-color: #e00;
+            border: none;
+            color: #fff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation */
+        .navigation {
+            background-color: #2a2a2a;
+            padding: 0.8rem 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: inline-flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link.active {
+            color: #f90;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Video Player Section */
+        .video-player-section {
+            margin-bottom: 2rem;
+        }
+
+        .video-player {
+            width: 100%;
+            background-color: #000;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .video-player video {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            display: block;
+        }
+
+        .video-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 1rem;
+            color: #999;
+            font-size: 0.9rem;
+            align-items: center;
+        }
+
+        .video-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #999;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            background-color: #222;
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .comments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 1rem;
+        }
+
+        .comments-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .post-comment-btn {
+            background-color: #f90;
+            color: #000;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .comment {
+            padding: 1rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .comment-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .username {
+            font-weight: 600;
+            color: #f90;
+        }
+
+        .comment-time {
+            color: #777;
+            font-size: 0.85rem;
+        }
+
+        .comment-text {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .comment-action {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #999;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .comment-action:hover {
+            color: #fff;
+        }
+
+        /* Video Grid */
+        .videos-section {
+            margin-top: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .video-card {
+            background-color: #222;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-quality {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .video-card-info {
+            padding: 1rem;
+        }
+
+        .video-card-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            color: #fff;
+        }
+
+        .video-card-meta {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .video-card-uploader {
+            color: #f90;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-wrap: wrap;
+            }
+            
+            .search-container {
+                order: 3;
+                flex-basis: 100%;
+                margin-top: 0.5rem;
+            }
+
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Xvideos_white_logo_%282023%29.svg/120px-Xvideos_white_logo_%282023%29.svg.png" alt="XVIDEOS">
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search X videos">
+                <button class="search-btn">🔍</button>
+            </div>
+
+            <div class="header-actions">
+                <button class="login-btn">💬 Login</button>
+                <button class="join-btn">Join for FREE</button>
+                <button class="premium-btn">PREMIUM</button>
+                <button class="login-btn">🌙</button>
+                <button class="login-btn">⚙️</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <div class="nav-links">
+            <a href="#" class="nav-link active">📹 Best Videos</a>
+            <a href="#" class="nav-link">📂 Categories ▼</a>
+            <a href="#" class="nav-link">📺 Channels</a>
+            <a href="#" class="nav-link">⭐ Pornstars</a>
+            <a href="#" class="nav-link">🔴 RED videos</a>
+            <a href="#" class="nav-link">🎥 Live Cams</a>
+            <a href="#" class="nav-link">🎮 Games</a>
+            <a href="#" class="nav-link">💕 Dating</a>
+            <a href="#" class="nav-link">👤 Profiles</a>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Video Player Section (Initially Hidden) -->
+        <div class="video-player-section" id="videoPlayerSection" style="display: none;">
+            <div class="video-player">
+                <video id="mainVideo" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="video-info">
+                <h1 class="video-title" id="videoTitle"></h1>
+                <div class="video-meta">
+                    <span id="videoViews"></span>
+                    <span>•</span>
+                    <span id="videoDuration"></span>
+                </div>
+                <div class="video-stats">
+                    <div class="stat-item">👍 <span>92%</span></div>
+                    <div class="stat-item">👎 <span>8%</span></div>
+                    <div class="stat-item">⭐ Favorite</div>
+                    <div class="stat-item">📥 Download</div>
+                    <div class="stat-item">↗️ Share</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comments Section (Initially Hidden) -->
+        <div class="comments-section" id="commentsSection" style="display: none;">
+            <div class="comments-header">
+                <h2 class="comments-title">💬 Comments (247)</h2>
+                <button class="post-comment-btn">Post Comment</button>
+            </div>
+
+            <div class="comments-list">
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-user">
+                            <div class="user-avatar">U</div>
+                            <span class="username">User123</span>
+                        </div>
+                        <span class="comment-time">1 day ago</span>
+                    </div>
+                    <p class="comment-text">This is amazing! One of the best videos I've seen.</p>
+                    <div class="comment-actions">
+                        <div class="comment-action">👍 <span>42</span></div>
+                        <div class="comment-action">👎</div>
+                        <div class="comment-action">Reply</div>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-user">
+                            <div class="user-avatar">V</div>
+                            <span class="username">VideoLover</span>
+                        </div>
+                        <span class="comment-time">1 day ago</span>
+                    </div>
+                    <p class="comment-text">The quality is incredible. Worth every penny!</p>
+                    <div class="comment-actions">
+                        <div class="comment-action">👍 <span>28</span></div>
+                        <div class="comment-action">👎</div>
+                        <div class="comment-action">Reply</div>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-user">
+                            <div class="user-avatar">P</div>
+                            <span class="username">PremiumFan</span>
+                        </div>
+                        <span class="comment-time">2 days ago</span>
+                    </div>
+                    <p class="comment-text">I've been a member for 3 months and never disappointed.</p>
+                    <div class="comment-actions">
+                        <div class="comment-action">👍 <span>15</span></div>
+                        <div class="comment-action">👎</div>
+                        <div class="comment-action">Reply</div>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="comment-user">
+                            <div class="user-avatar">A</div>
+                            <span class="username">AdultContent</span>
+                        </div>
+                        <span class="comment-time">2 days ago</span>
+                    </div>
+                    <p class="comment-text">The actors have great chemistry. More like this please!</p>
+                    <div class="comment-actions">
+                        <div class="comment-action">👍 <span>31</span></div>
+                        <div class="comment-action">👎</div>
+                        <div class="comment-action">Reply</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Videos Section -->
+        <div class="videos-section">
+            <h2 class="section-title">Best Videos</h2>
+            <div class="video-grid" id="videoGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // Video data
+        const videos = [
+            { 
+                title: "Newly married 18 year old bhabhi cheated her husband by fucking her ex-boyfriend", 
+                views: "709.3k", 
+                duration: "22 min", 
+                quality: "1080p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/7000/7821/124627.jpg",
+                uploader: "sexworld",
+                videoUrl: "https://files.catbox.moe/prkmx6.mp4"
+            },
+            { 
+                title: "My stepmother caught me spying on her in a nightgown. I was so horny for her", 
+                views: "3.3M", 
+                duration: "14 min", 
+                quality: "1080p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/7000/7821/124630.jpg",
+                uploader: "Suzie Slut Official",
+                videoUrl: "https://files.catbox.moe/031sie.mp4"
+            },
+            { 
+                title: "I'm late. Can we make it in 15 minutes?", 
+                views: "926.3k", 
+                duration: "16 min", 
+                quality: "1080p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/50000/50043/777167.jpg",
+                uploader: "comatozze",
+                videoUrl: "https://files.catbox.moe/9c68ty.mp4"
+            },
+            { 
+                title: "Indian Boyfriend sharing sex with 18yrs cute girl! Modern Girl Fucking", 
+                views: "107k", 
+                duration: "22 min", 
+                quality: "1080p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/53000/53809/843768.jpg",
+                uploader: "Indianxworld",
+                videoUrl: "https://files.catbox.moe/lrm0ta.mp4"
+            },
+            { 
+                title: "Maki Hojo Fan Thanksgiving ~ Hot Spring Bus Tour ~ 1", 
+                views: "18.3M", 
+                duration: "12 min", 
+                quality: "720p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/53000/53809/843773.jpg",
+                uploader: "1pondo",
+                videoUrl: "https://files.catbox.moe/kou2pa.mp4"
+            },
+            { 
+                title: "Big-bottomed stepmother enjoys her stepson what her husband doesn't give her", 
+                views: "1M", 
+                duration: "21 min", 
+                quality: "1080p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/46000/46079/709720.jpg",
+                uploader: "Thiagolopez",
+                videoUrl: "https://files.catbox.moe/ittih2.mp4"
+            },
+            { 
+                title: "I arrive at my stepmother's house and see her alone, so I fuck her pussy", 
+                views: "94.3k", 
+                duration: "8 min", 
+                quality: "720p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/1000/1638/25072.jpg",
+                uploader: "Roxanisex",
+                videoUrl: "https://files.catbox.moe/p3kc2d.mp4"
+            },
+            { 
+                title: "Girl invite boyfriend to the house", 
+                views: "51.8k", 
+                duration: "13 min", 
+                quality: "1440p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/63000/63257/1009136.jpg",
+                uploader: "Golupaa",
+                videoUrl: "https://files.catbox.moe/pii7ya.mp4"
+            },
+            { 
+                title: "Hot passionate sex with stepsister in the bathroom", 
+                views: "543.2k", 
+                duration: "18 min", 
+                quality: "1440p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/11000/11776/186524.jpg",
+                uploader: "LuxuryMur",
+                videoUrl: "https://files.catbox.moe/a7ggq9.mp4"
+            },
+            { 
+                title: "Morning quickie with my step sister before parents wake up", 
+                views: "234.6k", 
+                duration: "25 min", 
+                quality: "1080p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/12000/12570/198980.jpg",
+                uploader: "TeenLover69",
+                videoUrl: "https://files.catbox.moe/2znb5m.mp4"
+            },
+            { 
+                title: "Passionate college couple making love in dorm room", 
+                views: "892.1k", 
+                duration: "19 min", 
+                quality: "1080p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/60000/60521/963325.jpg",
+                uploader: "CollegeHookups",
+                videoUrl: "https://files.catbox.moe/prkmx6.mp4"
+            },
+            { 
+                title: "Steamy shower sex with girlfriend", 
+                views: "1.2M", 
+                duration: "15 min", 
+                quality: "1440p", 
+                thumbnail: "https://cdn1.sexvid.pro/contents/photos/main/2250x450/11000/11776/186531.jpg",
+                uploader: "WetDreams",
+                videoUrl: "https://files.catbox.moe/031sie.mp4"
+            }
+        ];
+
+        const videoGrid = document.getElementById('videoGrid');
+        const mainVideo = document.getElementById('mainVideo');
+        const videoTitle = document.getElementById('videoTitle');
+        const videoViews = document.getElementById('videoViews');
+        const videoDuration = document.getElementById('videoDuration');
+        const videoPlayerSection = document.getElementById('videoPlayerSection');
+        const commentsSection = document.getElementById('commentsSection');
+
+        // Generate video cards
+        function generateVideoCards() {
+            videos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.onclick = () => playVideo(index);
+                card.innerHTML = `
+                    <div class="video-thumbnail">
+                        <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+                        <div class="video-quality">${video.quality}</div>
+                        <div class="video-duration">${video.duration}</div>
+                    </div>
+                    <div class="video-card-info">
+                        <div class="video-card-title">${video.title}</div>
+                        <div class="video-card-meta">
+                            <span>${video.views} Views</span>
+                        </div>
+                        <div class="video-card-uploader">${video.uploader}</div>
+                    </div>
+                `;
+                videoGrid.appendChild(card);
+            });
+        }
+
+        // Play selected video
+        function playVideo(index) {
+            const video = videos[index];
+            
+            // Show video player and comments section
+            videoPlayerSection.style.display = 'block';
+            commentsSection.style.display = 'block';
+            
+            // Update video details
+            mainVideo.src = video.videoUrl;
+            videoTitle.textContent = video.title;
+            videoViews.textContent = video.views + ' Views';
+            videoDuration.textContent = video.duration;
+            mainVideo.play();
+            
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        generateVideoCards();
+
+        // Security features
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+                (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('selectstart', e => e.preventDefault());
+        document.addEventListener('dragstart', e => e.preventDefault());
+    </script>
+</body>
+</html>
