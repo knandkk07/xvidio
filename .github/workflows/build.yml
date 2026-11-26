@@ -22,10 +22,15 @@ jobs:
     - name: Setup Android SDK
       run: |
         echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
+        export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
         echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> $GITHUB_PATH
         echo "$ANDROID_SDK_ROOT/platform-tools" >> $GITHUB_PATH
-        yes | sdkmanager --licenses || true
-        sdkmanager "platforms;android-33" "build-tools;33.0.2"
+        # Find and use sdkmanager
+        SDKMANAGER=$(find $ANDROID_SDK_ROOT -name "sdkmanager" -type f 2>/dev/null | head -1)
+        if [ -n "$SDKMANAGER" ]; then
+          yes | $SDKMANAGER --licenses || true
+          $SDKMANAGER "platforms;android-33" "build-tools;33.0.2" || true
+        fi
 
     - name: Create Gradle Wrapper
       run: |
