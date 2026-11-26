@@ -8,29 +8,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: cimg/android:2023.12
 
     steps:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-
-    - name: Setup Android SDK
-      run: |
-        echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
-        export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
-        echo "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin" >> $GITHUB_PATH
-        echo "$ANDROID_SDK_ROOT/platform-tools" >> $GITHUB_PATH
-        # Find and use sdkmanager
-        SDKMANAGER=$(find $ANDROID_SDK_ROOT -name "sdkmanager" -type f 2>/dev/null | head -1)
-        if [ -n "$SDKMANAGER" ]; then
-          yes | $SDKMANAGER --licenses || true
-          $SDKMANAGER "platforms;android-33" "build-tools;33.0.2" || true
-        fi
+    - name: Accept Licenses
+      run: yes | sdkmanager --licenses || true
 
     - name: Create Gradle Wrapper
       run: |
@@ -38,7 +24,7 @@ jobs:
         chmod +x gradlew
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace
+      run: ./gradlew assembleDebug --stacktrace --no-daemon
 
     - name: List APK files
       run: find . -name "*.apk" -type f
