@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -19,26 +18,36 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
-      with:
-        gradle-version: '8.0'
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Create Gradle wrapper
+      run: |
+        mkdir -p gradle/wrapper
+        cat > gradle/wrapper/gradle-wrapper.properties << 'EOF'
+        distributionBase=GRADLE_USER_HOME
+        distributionPath=wrapper/dists
+        distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-bin.zip
+        zipStoreBase=GRADLE_USER_HOME
+        zipStorePath=wrapper/dists
+        EOF
+        # Download gradle wrapper jar
+        curl -sL https://raw.githubusercontent.com/gradle/gradle/v8.0.0/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar
+        # Create gradlew script
+        curl -sL https://raw.githubusercontent.com/gradle/gradle/v8.0.0/gradlew -o gradlew
+        chmod +x gradlew
 
     - name: Create local.properties
-      run: echo "sdk.dir=/usr/local/lib/android/sdk" > local.properties
+      run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
 
     - name: Build Debug APK
-      run: gradle assembleDebug --stacktrace
-      env:
-        ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-        ANDROID_HOME: /usr/local/lib/android/sdk
+      run: ./gradlew assembleDebug --stacktrace --no-daemon
 
-    - name: List APK files
-      run: find . -name "*.apk" -type f || echo "No APK found"
+    - name: Find APK
+      run: find . -name "*.apk" -type f
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: xvideo-debug-apk
         path: app/build/outputs/apk/debug/*.apk
-        if-no-files-found: warn
